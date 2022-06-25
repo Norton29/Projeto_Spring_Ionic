@@ -9,26 +9,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nff.ProjetoSpringIonic.Service.CategoriesService;
-import com.nff.ProjetoSpringIonic.domain.Categories;
+import com.nff.ProjetoSpringIonic.Service.ProductService;
+import com.nff.ProjetoSpringIonic.domain.Product;
 
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoryController{
+@RequestMapping(value = "/product")
+public class ProductController{
 
 	@Autowired
-	private CategoriesService categoriesService;
+	private ProductService productService;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Categories> find(@PathVariable Integer id) {
-			Categories cat = categoriesService.find(id);
-			return ResponseEntity.ok().body(cat);			
+	public ResponseEntity<Product> find(@PathVariable Integer id) {
+		Product product = productService.find(id);
+		return ResponseEntity.ok().body(product);		
+		
 	}
 		
 	@PostMapping(value = "/insert")
-	public ResponseEntity<Categories> insert(@RequestBody Categories cat ){
-		Categories categories = categoriesService.insert(cat); 
-		return ResponseEntity.ok().body(categories);
+	public ResponseEntity<Product> insert(@RequestBody Product pro ){
+		Product product = productService.insert(pro); 
+		return ResponseEntity.ok().body(product);
 				
 	}
 }
