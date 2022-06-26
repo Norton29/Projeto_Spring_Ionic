@@ -11,12 +11,7 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class Categories {
 
 	
