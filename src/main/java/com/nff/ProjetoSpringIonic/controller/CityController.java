@@ -13,7 +13,9 @@ import com.nff.ProjetoSpringIonic.Service.CityService;
 import com.nff.ProjetoSpringIonic.Service.StateService;
 import com.nff.ProjetoSpringIonic.domain.City;
 import com.nff.ProjetoSpringIonic.domain.State;
+import com.nff.ProjetoSpringIonic.domain.DTO.CityAndStateDTO;
 import com.nff.ProjetoSpringIonic.domain.DTO.CityDTO;
+import com.nff.ProjetoSpringIonic.domain.DTO.StateDTO;
 
 @RestController
 @RequestMapping(value = "/city")
@@ -26,11 +28,13 @@ public class CityController{
 	private StateService stateService;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<CityDTO> find(@PathVariable Integer id) {
+	public ResponseEntity<CityAndStateDTO> find(@PathVariable Integer id) {
 		City city = cityService.find(id);
-		State state = stateService.find(city);
-		CityDTO cityDTO = new CityDTO(city, state);
-		return ResponseEntity.ok().body(cityDTO);		
+		State state = stateService.findState(id);
+		CityDTO cityDTO = new CityDTO(city);
+		StateDTO stateDTO = new StateDTO(state);
+		CityAndStateDTO cityAndState = new CityAndStateDTO(cityDTO, stateDTO);
+ 		return ResponseEntity.ok().body(cityAndState);		
 		
 	}
 		

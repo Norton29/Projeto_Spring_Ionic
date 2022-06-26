@@ -20,7 +20,10 @@ public class StateService {
 		return state.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + State.class.getName()));
 	}
 	
-	
+	public State findState(Integer id) {
+		Optional<State> state = stateRepository.findState(id);
+		return state.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + State.class.getName()));
+	}
 	
 	public State insert(State state) {
 		return stateRepository.save(state);
